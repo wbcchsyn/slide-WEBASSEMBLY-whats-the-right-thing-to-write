@@ -1,0 +1,251 @@
+% Copyright 2023 Yoshida Shin
+%
+% This is part of the ``WEBASSEMBLY What's the right thing to write?''.
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.3 or any later version published by the Free Software
+% Foundation; with one Invariant Sections:
+% ``Shin Yoshida wrote this document with the goal of contributing to a fair and safe world.
+% Funai Soken Digital Incorporated agrees with the vision and compensated him for his work.''
+% no Front-Cover Texts, and no Back-Cover Text. A copy of the license is
+% included in the section entitled ``GNU Free Documentation License''.
+
+\section{WebAssembly}
+
+
+\begin{frame}{}{}
+    {\Huge WebAssembly}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    ``Java technology'' includes many things.
+    \vspace{4ex}
+
+    \begin{itemize}
+        \onslide+<2->{\item Java language}
+        \onslide+<3->{\item Java compiler}
+        \onslide+<4->{\item Java application}
+        \onslide+<5->{\item Java virtual machine}
+        \onslide+<6->{\item ...}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    What if we separated and abstracted these components?    
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Why do we have to write code in the specific language to use VM?
+    \vspace{4ex}
+
+    \onslide+<2->{The VM and the language are already separated.}
+    \vspace{4ex}
+
+    \onslide+<3->{We need only a standard to abstract this.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    {\Large WebAssembly is a starndard to abstract the VM.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Thanks to WebAssembly, we can create multipile VMs and compilers.
+    \vspace{4ex}
+
+    \begin{itemize}
+        \onslide+<2->{\item Programmers can write source code in their favorite language (as long as the compiler is available.)}
+        \onslide+<3->{\item Users can select one compiler and one VM form many implementations.}
+        \onslide+<4->{\item The behavior of WebAssembly applications is consistent anywhere.}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    {\Huge Really?}
+    \vspace{4ex}
+
+    \onslide+<2->{Could you print out this slide using a computer without any printer?}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Goal
+    \vspace{2ex}
+
+    WebAssembly should work well anywhere.
+    \vspace{4ex}
+
+    \onslide+<2->{
+        Problem
+        \vspace{2ex}
+
+        Any program (including a VM) is dependent on the OS and hardware.
+    }
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Remember
+    \vspace{2ex}
+
+    \onslide+<2->{An application performs two kinds of processes.}
+    \vspace{4ex}
+
+    \begin{itemize}
+        \onslide+<3->{\item Request to the OS}
+        \onslide+<4->{\item Calculation using the CPU and memory directly}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Give up running everything on VM.
+    \vspace{4ex}
+
+    \onslide+<2->{WebAssembly should treat only what is independent of the OS.}
+\end{frame}
+
+
+\begin{frame}{Average}{WebAssembly}
+    Let's consider to create an application to calculate the average.
+    \vspace{4ex}
+
+    \onslide+<2->{Usage}
+    \vspace{2ex}
+
+    \begin{enumerate}
+        \onslide+<3->{\item The user enters some numbers}
+        \onslide+<4->{\item The application displays the average}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    The program should consist of the following four parts.
+    \vspace{2ex}
+
+    \begin{enumerate}
+        \onslide+<2->{\item Starting the application}
+        \onslide+<3->{\item Retriving the number from the keyboard}
+        \onslide+<4->{\item Calculating the average of the given numbers}
+        \onslide+<5->{\item Displaying the result}
+    \end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{WebAssembly}{}
+    Here is an example of the process flow.
+    \vspace{2ex}
+
+    \begin{enumerate}
+        \onslide+<2->{\item OS kicks off the application written in JavaScript.}
+        \onslide+<3->{\item JavaScript retrives the numbers from the keyboard.}
+        \onslide+<4->{\item JavaScript kicks off the WebAssembly VM.}
+        \onslide+<5->{\item JavaScript passes the numbers to the VM.}
+        \onslide+<6->{\item The VM calculates the average.}
+        \onslide+<7->{\item The VM passes the result to JavaScript.}
+        \onslide+<8->{\item JavaScript displays the answer.}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Here is another example
+    \vspace{2ex}
+
+    \begin{enumerate}
+        \onslide+<2->{\item OS kicks off the application written in JavaScript.}
+        \onslide+<3->{\item JavaScript kicks off WebAssembly VM.}
+        \onslide+<4->{\item JavaScript passes the functions for Input/Output to the VM.}
+        \onslide+<5->{\item The VM retrives the numbers using the passed function.}
+        \onslide+<6->{\item The VM calculates the average.}
+        \onslide+<7->{\item The VM displays the answer using the passed function.}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    You can use WebAssembly partially to write the source code.
+    \vspace{4ex}
+
+    \onslide+<2->{The code for WebAssembly will work anywhere.}
+    \vspace{4ex}
+
+    \onslide+<3->{You must write JavaScript code anyway. It may depends on the computer.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Generally speaking, the core complex logic of the program is independent of the OS.
+    \vspace{4ex}
+
+    \onslide+<2->{You can write the most of the source code for WebAssembly.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    {\Large How does WebAssembly used in the business?}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Ex1) Enhancing JavaScript on WebPage
+    \vspace{4ex}
+
+    \begin{itemize}
+        \onslide+<2->{\item Web brousers can only run JavaScript.}
+        \onslide+<3->{\item Sometimes it is not easy to write a complicated code in JavaScript.}
+        \onslide+<4->{\item WebAssembly usually performs better than JavaScript.}
+    \end{itemize}
+    \vspace{4ex}
+
+    \onslide+<5->{WebAssembly may make it easy to create a good program.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Ex2) Framework utilizing WebAssembly VM
+    \vspace{4ex}
+
+    \onslide+<2->{In case of Ruby on Rails, for example, you must write the code in Ruby.}
+    \vspace{4ex}
+
+    \onslide+<3->{However, with a framework that utilizes the WebAssembly VM, code can be written in any language.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Remember the introduction again.
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    According to webassembly.org,
+    \begin{quote}WebAssembly (abbreviated Wasm) is a binary instruction format for a stack-based virtual machine.\end{quote}
+    \vspace{2ex}
+
+    \onslide+<2->{
+        \begin{itemize}
+            \item   instraction:    The specification of CPU.
+            \item   stack-based:    A kind of computer architecture.
+        \end{itemize}
+    }
+    \vspace{2ex}
+
+    \onslide+<3->{I think that it is a standard to make the programming logic abstract.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly}{}
+    Discussion
+    \vspace{4ex}
+
+    Which architecture is better between the above examples of the average application?
+\end{frame}
