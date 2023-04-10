@@ -1,0 +1,111 @@
+% Copyright 2023 Yoshida Shin
+%
+% This is part of the ``WEBASSEMBLY What's the right thing to write?''.
+%
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the GNU Free Documentation License,
+% Version 1.3 or any later version published by the Free Software
+% Foundation; with one Invariant Sections:
+% ``Shin Yoshida wrote this document with the goal of contributing to a fair and safe world.
+% Funai Soken Digital Incorporated agrees with the vision and compensated him for his work.''
+% no Front-Cover Texts, and no Back-Cover Text. A copy of the license is
+% included in the section entitled ``GNU Free Documentation License''.
+
+\section{WebAssembly System Interface}
+
+
+\begin{frame}{}{}
+    {\Large WebAssembly System Interface}
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    Remember the sentence in section ``WebAssembly.''
+    \vspace{4ex}
+
+    \onslide+<2->{\begin{quote}Give up running everything on VM.\end{quote}}
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    Some people did not like this idea.
+    \vspace{4ex}
+
+    \onslide+<2->{They created the standard of the interface that allows WebAssembly to interact with the OS}
+    \vspace{4ex}
+
+    \onslide+<3->{This is known as ``WebAssembly System Interface,'' or WASI for short.}
+\end{frame}
+
+
+\begin{frame}[t]{WebAssembly System Interface}{}
+    Remember the example of the average application.
+    \vspace{2ex}
+    
+    \onslide*<2>{
+        \begin{enumerate}
+            \item OS kicks off the application written in JavaScript.
+            \item JavaScript kicks off WebAssembly VM.
+            \item JavaScript passes the functions for Input/Output to the VM.
+            \item The VM retrives the numbers using the passed function.
+            \item The VM calculates the average.
+            \item The VM displays the answer using the passed function.
+        \end{enumerate}
+    }
+    \onslide*<3->{
+        \begin{enumerate}
+            \item ...
+            \item JavaScript kicks off WebAssembly VM.
+            \item JavaScript passes the functions for Input/Output to the VM.
+            \item ...
+        \end{enumerate}
+        \vspace{4ex}
+
+        \onslide+<4->{Can we prepare these functions in advance
+        so that the WebAssembly VM can send all requests to the OS?}
+    }
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    {\Large Yes we can.}
+    \vspace{4ex}
+
+    \onslide+<2->{That's exactly what WASI defines:}
+    \vspace{2ex}
+    
+    \onslide+<3->{a set of functions to be passed to the WebAssembly VM so it can communicate directly with the OS and hardware.} 
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    WASI is a new standard that defines these functions to be passed to the WebAssembly VM.
+    \vspace{4ex}
+    
+    \onslide+<2->{Although many changes are occurring in a short period of time,
+    some people are already planning to use a new eco-system using WASI.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    For example we can incorporate WebAssembly into Linux OS.
+    \vspace{4ex}
+
+    \onslide+<2->{This will reduce the overhead of the VM.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    Alternatively, we can create a new OS on the WASI
+    \vspace{4ex}
+    
+    \onslide+<2->{users wouldn't have to worry about the underlying OS and hardware.}
+\end{frame}
+
+
+\begin{frame}{WebAssembly System Interface}{}
+    Discussion
+    \vspace{4ex}
+
+    How do we use WebAssembly System Interface in business?
+\end{frame}
