@@ -118,28 +118,47 @@
 
 
 \begin{frame}{System call and User Land}{Unix and C}
+    btw, how do programmers write code to manipulate the hardware in C language on OS?
+    \vspace{4ex}
+
+    \onslide+<2->{Send a request to the OS.}
+\end{frame}
+
+
+\begin{frame}{System call and User Land}{Unix and C}
     The development of OS split the process of application into two.
-    \vspace{2ex}
+    \vspace{4ex}
 
-    \onslide+<2->{{\small
-        System Call: Request to the OS (kernel)
-        \onslide+<4->{{\footnotesize
-            \begin{itemize}
-                \item   Input / Output
-                \item   Memory Allocation / Deallocation
-                \item   ...
-            \end{itemize}
-        }}
-    }}
+    \begin{itemize}
+        \onslide+<2->{\item Request to the OS}
+        \onslide+<3->{\item The others (calculation using the CPU and memory directly)}
+    \end{itemize}
+\end{frame}
 
-    \onslide+<3->{{\small
-        Others: Calculation using CPU and memory directly
-        \onslide+<5->{{\footnotesize
-            \begin{itemize}
-                \item   Arithmetic Operations
-                \item   Memory Access (Read / Write)
-                \item   ...
-            \end{itemize}
-        }}
-    }}
+
+\begin{frame}{System call and User Land}{Unix and C}
+    ``Request to the OS'' is called ``System Call.''
+    \vspace{4ex}
+
+    \onslide+<2->{
+        \begin{itemize}
+            \item Input / Output (Because we have to use the hardware for input / output.)
+            \item Memory Allocation / Deallocation (It does not use the hardware, but someone must manage the memory to run 2 or more than 2 processes simultaneously.)
+            \item ...
+        \end{itemize}
+    }
+\end{frame}
+
+
+\begin{frame}{System call and User Land}{Unix and C}
+    The others (calculation using the CPU and memory directly)
+    \vspace{4ex}
+
+    \onslide+<2->{
+        \begin{itemize}
+            \item Arithmetic operations
+            \item Memory access (Read / Write)
+            \item ...
+        \end{itemize}
+    }
 \end{frame}
